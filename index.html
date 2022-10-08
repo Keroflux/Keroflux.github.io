@@ -9,11 +9,21 @@
         color:grey;
         font-family: 'Courier New', Courier, monospace;}
 
-        a:link {font-size: 20px;
+        .linkBtn:link, .linkBtn:visited {
+            font-size: 20px;
             color: #007acc;
             font-weight: bold;
-            font-family: 'Courier New', Courier, monospace;}
-        a:visited {color: #007acc;}
+            font-family: 'Courier New', Courier, monospace;
+            text-decoration: none;
+            background-color: #2d2d30;
+            padding: 14px 25px;
+            display: inline-block;
+            width: 250px;
+            border-radius: 50px;
+            margin: 5px}
+        .linkBtn:hover {
+            background-color:#3e3e42
+        }
 
         .brekkPoint {color:crimson;
                     font-family:monospace;}
@@ -33,11 +43,11 @@
         <p>Velkommen til BrekkPoint. En bedre versjon av SharePoint. Her finner du en liste over små programmer (apper) jeg har laget</p>
         <div class="godotDiv">
             <h2>Apper laget i Godot</h2>
-            <a href="https://keroflux.github.io/leaktest/">Link til lekkasjetest prototype</a>
+            <a class="linkBtn" href="https://keroflux.github.io/leaktest/">Sikkerhetskritisk lekkasjetest</a>
             <br>
-            <a href="https://keroflux.github.io/pidsim/">Link PID simulatoren</a>
+            <a class="linkBtn" href="https://keroflux.github.io/pidsim/">PID simulator</a>
             <br>
-            <a href="https://keroflux.github.io/tagfinder/">Link tagfinder</a>
+            <a class="linkBtn" href="https://keroflux.github.io/tagfinder/">TagFinder</a>
             <br>
             <a href="https://godotengine.org/" target="_blank"><img src="icon.png" alt="Bilde" width="400" height="300"></a>
         </div>
