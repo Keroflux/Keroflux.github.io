@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <body>
+
+        <div id="myPlot" style="width:100%;max-width:7000px;height:1000px;"></div>
+
+        <script>
+            var xArray = [];
+            var yArray = [];
+            for(let i = 0; i < 100; i++){
+                xArray.push(i*i)
+                yArray.push(i)
+            }
+
+            // Define Data
+            var data = [{
+            x: xArray,
+            y: yArray,
+            mode:"lines"
+            }];
+
+            // Define Layout
+            var layout = {
+            xaxis: {range: [0, 160], title: "Sekunder"},
+            yaxis: {range: [0, 160], title: "BarG"},  
+            title: "Trykkendring"
+            };
+
+            // Display using Plotly
+            Plotly.newPlot("myPlot", data, layout);
+        </script>
+
+    </body>
+</html>
