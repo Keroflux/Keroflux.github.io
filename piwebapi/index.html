@@ -6,59 +6,17 @@
         </title>
         <script src="jquery-3.6.1.min.js"></script>
         <script>
-            var childrenMap = {
-            PISystems: ['AssetServers'],
-            AssetServers: ['Databases'],
-            Databases: ['Elements'],
-            Elements: ['Elements', 'Attributes'],
-            Attributes: ['Attributes']
-            };
-
-            function node(name, type, links, parentDiv) {
-            let nameSpan = $('<span />').addClass(type).text(name);
-            let flipper = $('<span />').addClass('flipper').text('+').click(flip.bind(this, this));
-            let indent = $('<div />').addClass('indented').hide();
-
-            this.type = type;
-            this.links = links;
-            this.flipper = flipper;
-            parentDiv.append(this.flipper).append(nameSpan).append('<br/>');
-            this.div = indent.appendTo(parentDiv);
-            //resizeHeader();
-            }
-
-            function loadChildren(n) {
-            n.loaded = true;
-            childrenMap[n.type].forEach(function(childCollection) {
-                $.get(n.links[childCollection], function(collection) {
-                n[childCollection] = collection.Items.map(function (item) {
-                    return new node(item.Name, childCollection, item.Links, n.div);
+           $.getJSON( "https://piwebapi.equinor.com/piwebapi", function( data ) {
+                var items = [];
+                $.each( data, function( key, val ) {
+                    items.push( "<li id='" + key + "'>" + val + "</li>" );
                 });
+                
+                $( "<ul/>", {
+                    "class": "my-new-list",
+                    html: items.join( "" )
+                }).appendTo( "body" );
                 });
-            });
-            }
-
-            function flip(n) {
-            if (!n.loaded) { loadChildren(n); }
-            n.flipper.html(n.flipper.html() == '+' ? '-' : '+');
-            n.div.toggle();
-            }
-
-            $(function() {
-            root = new node('PI Systems', 'PISystems',
-                { AssetServers: 'https://piwebapi.equinor.com/piwebapi' }, $("#root"));
-            });
-        </script>
-
-        <style type="text/css">
-            div {
-            left: 10px;
-            position: relative;
-            }
-            .flipper {
-            cursor: pointer;
-            }
-        </style>
         </script>
     </head>
     
